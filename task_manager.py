@@ -3,6 +3,8 @@ import json
 import os
 from dataclasses import asdict, dataclass
 
+MAX_TITLE_LENGTH = 100
+
 
 @dataclass
 class Task:
@@ -43,7 +45,13 @@ class TaskManager:
             json.dump(data, f, indent=2)
 
     def add_task(self, title):
-        """Create a new task and return it."""
+        """Create a new task and return it.
+
+        Raises ValueError if the title is empty or only whitespace.
+        """
+        title = (title or "").strip()
+        if not title:
+            raise ValueError("Task title cannot be empty.")
         task = Task(id=self.next_id, title=title)
         self.tasks.append(task)
         self.next_id += 1
