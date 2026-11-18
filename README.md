@@ -10,4 +10,4 @@ You can **add**, **display**, **complete** and **delete** tasks. Tasks are saved
 python main.py
 ```
 
-Project status: Planning
+Project status: Testing
