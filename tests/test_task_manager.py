@@ -28,7 +28,7 @@ class TestTaskManager(unittest.TestCase):
     def test_complete_task(self):
         task = self.manager.add_task("Finish lab report")
         self.manager.complete_task(task.id)
-        self.assertFalse(self.manager.find_task(task.id).completed)  # deliberate mistake
+        self.assertTrue(self.manager.find_task(task.id).completed)
 
     def test_delete_task(self):
         task = self.manager.add_task("Buy notebook")
