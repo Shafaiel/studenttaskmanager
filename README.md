@@ -9,3 +9,5 @@ You can **add**, **display**, **complete** and **delete** tasks. Tasks are saved
 ```bash
 python main.py
 ```
+
+Project status: Planning
