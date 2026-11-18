@@ -87,8 +87,15 @@ class TaskManager:
         return task
 
     def delete_task(self, task_id):
-        """Remove a task from the list."""
+        """Remove the task with the given id.
+
+        Raises ValueError if the id is not a valid, existing task id.
+        """
+        if not isinstance(task_id, int) or isinstance(task_id, bool):
+            raise ValueError("Task id must be a whole number.")
         task = self.find_task(task_id)
+        if task is None:
+            raise ValueError(f"No task with id {task_id}.")
         self.tasks.remove(task)
         self.save()
         return task

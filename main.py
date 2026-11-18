@@ -50,8 +50,20 @@ def handle_complete(manager):
 
 
 def handle_delete(manager):
-    task_id = int(input("Task id to delete: "))
-    task = manager.delete_task(task_id)
+    raw = input("Task id to delete: ").strip()
+    if not raw.isdigit():
+        print("Error: please enter a valid numeric task id.")
+        return
+    task_id = int(raw)
+    task = manager.find_task(task_id)
+    if task is None:
+        print(f"Error: No task with id {task_id}.")
+        return
+    confirm = input(f"Delete '{task.title}'? (y/n): ").strip().lower()
+    if confirm != "y":
+        print("Delete cancelled.")
+        return
+    manager.delete_task(task_id)
     print(f"Deleted task {task.id}: {task.title}")
 
 
