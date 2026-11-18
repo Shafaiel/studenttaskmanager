@@ -33,8 +33,19 @@ def handle_display(manager):
 
 
 def handle_complete(manager):
-    task_id = int(input("Task id to complete: "))
-    task = manager.complete_task(task_id)
+    pending = [task for task in manager.list_tasks() if not task.completed]
+    if not pending:
+        print("There are no pending tasks to complete.")
+        return
+    print("Pending tasks:")
+    for task in pending:
+        print(task)
+    try:
+        task_id = int(input("Select task id to complete: "))
+        task = manager.complete_task(task_id)
+    except ValueError as error:
+        print(f"Error: {error}")
+        return
     print(f"Task {task.id} marked as completed.")
 
 

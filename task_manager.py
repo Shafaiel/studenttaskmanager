@@ -73,8 +73,15 @@ class TaskManager:
         return None
 
     def complete_task(self, task_id):
-        """Mark a task as completed."""
+        """Mark the selected task as completed.
+
+        Raises ValueError if no task has this id or it is already completed.
+        """
         task = self.find_task(task_id)
+        if task is None:
+            raise ValueError(f"No task with id {task_id}.")
+        if task.completed:
+            raise ValueError(f"Task {task_id} is already completed.")
         task.completed = True
         self.save()
         return task
