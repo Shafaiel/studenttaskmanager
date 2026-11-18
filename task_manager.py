@@ -31,3 +31,22 @@ class TaskManager:
     def list_tasks(self):
         """Return all tasks."""
         return list(self.tasks)
+
+    def find_task(self, task_id):
+        """Return the task with the given id, or None."""
+        for task in self.tasks:
+            if task.id == task_id:
+                return task
+        return None
+
+    def complete_task(self, task_id):
+        """Mark a task as completed."""
+        task = self.find_task(task_id)
+        task.completed = True
+        return task
+
+    def delete_task(self, task_id):
+        """Remove a task from the list."""
+        task = self.find_task(task_id)
+        self.tasks.remove(task)
+        return task
