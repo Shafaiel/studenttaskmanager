@@ -47,11 +47,14 @@ class TaskManager:
     def add_task(self, title):
         """Create a new task and return it.
 
-        Raises ValueError if the title is empty or only whitespace.
+        Raises ValueError if the title is empty, only whitespace,
+        or longer than MAX_TITLE_LENGTH characters.
         """
         title = (title or "").strip()
         if not title:
             raise ValueError("Task title cannot be empty.")
+        if len(title) > MAX_TITLE_LENGTH:
+            raise ValueError(f"Task title must be at most {MAX_TITLE_LENGTH} characters.")
         task = Task(id=self.next_id, title=title)
         self.tasks.append(task)
         self.next_id += 1
