@@ -1,6 +1,8 @@
 """Console interface for the Student Task Manager."""
 from task_manager import TaskManager
 
+DATA_FILE = "tasks.json"
+
 MENU = """
 ===== Student Task Manager =====
 1. Add task
@@ -47,7 +49,7 @@ ACTIONS = {
 
 
 def main():
-    manager = TaskManager()
+    manager = TaskManager(DATA_FILE)
     while True:
         print(MENU)
         choice = input("Choose an option: ").strip()
