@@ -37,3 +37,6 @@ Tests also run automatically with GitHub Actions on every push and pull request 
 
 ## License
 MIT - see [LICENSE](LICENSE).
+
+## Lab report
+See [LABREPORT.md](LABREPORT.md) and the screenshots in [labevidence/](labevidence/).
